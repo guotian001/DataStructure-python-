@@ -29,7 +29,10 @@ def reverse(head):
 '''
     递归实现，将第一个结点后面的看成一个新的链，对其递归(先将这些rest排好)
     注意一点，反转后第一个结点的前驱就是原链中的second，也就是新链的头，也就是说剩下的结点组成的新链反转后的尾是second，就是原来的头
+    递归：描述清楚，合理，解交给计算机
+     ①先递归，再处理该（先把情形假设为已知）；②先处理该，再递归（正常思路）
 '''
+# ①
 def reverseInRecursion(head):
     if head==None or head._next==None:
         return head # 只有一个结点的话直接return该结点
@@ -104,6 +107,7 @@ def printList(head):
 
 
 # 递归实现，不要太帅哦，算法中应该是经常使用的，毕竟描述是简单的，方程思想解放了很多应用题
+# ②
 def reverseWithK(head, K):
     # 递归
     # 找到k个，reverse
