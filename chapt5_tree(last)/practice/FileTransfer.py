@@ -3,13 +3,27 @@
 集合的简化表示，集合中的元素都可以用连续的非负整数来表示，所以只需要一个整形的数组，下标数组的下标i就代表着集合的第i个元素，数组中存的值是这第i个
 元素的父节点的下标，也就是说data与i相等了。。。
 '''
-
+# x从0开始
+# find 接口
 def find(s, x):
+    return find2(s, x)
+
+def find1(s, x):
     while s[x]>=0: # 本质上就是根据数组中存放的元素来进行判断的，本身就不是根据下标来判断的
         x=s[x]
     return x
+# 使用路径压缩，在n足够大的时候才能体会到好处
+def find2(s, x):
+    if s[x]<0:
+        return x
+    else:
+        s[x] = find2(s, s[x])
+        return s[x]
 
 def union(s, root1, root2):
+    union2(s, root1, root2)
+
+def union3(s, root1, root2):
     s[root2]=root1
 
 # 按树的高度进行归并， 数组存放的是  -树高
@@ -18,7 +32,7 @@ def union1(s, root1, root2):
         s[root2] = root1
     else:
         if s[root1] == s[root2]:
-            root2+=1 # 只有两个等高的树进行归并的时候，树高才更新，并且只+1
+            s[root2]-=1 # 只有两个等高的树进行归并的时候，树高才更新，并且只+1（代码中应该是-1）
         s[root1]=root2
 
 # 按集合的规模（元素个数）进行归并， 数组存放的是  -元素个数
@@ -96,7 +110,7 @@ def input_connection(S, u, v):
 def check_networks(S):
     count= 0
     for i in S:
-        if i == -1:
+        if i < 0:
             count+=1
     if count==1:
         print 'The network is connected.'

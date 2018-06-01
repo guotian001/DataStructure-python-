@@ -118,20 +118,17 @@ def wpl(tree, length=0):
             return wpl(tree.left,length+1)+wpl(tree.right,length+1)
 
 
-
 ################  test  ##########################
 
-
 dataList = [1,2,3,4,5]
-def huffmanWithList():
+def huffmanWithList(dataList):
     list = [Node(i) for i in dataList]
     h = MinHeap(10)
     h.buildTree(list)
     huffTree = huffman(h)
     return huffTree
-    # print wpl(huffTree)
 
-test()
+# test()
 
 
 ##############  哈夫曼编码  ########################
