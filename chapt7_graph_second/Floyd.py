@@ -6,13 +6,12 @@
 '''
 from chapt6_graph_first.MGraph import GNode
 INFINITE = float('inf')
-def Floyd(g, ):
+def Floyd(g):
     # 初始化：
-    G = [[0]*g.Nv]*g.Nv
+    G = g.G
     path = [[-1]*g.Nv]*g.Nv
     for i in range(g.Nv):
         for j in range(g.Nv):
-            G[i][j] = g.G[i][j]
             path[i][j] = i # 与下面的前驱结点保持一致
 
     for k in range(g.Nv):

@@ -20,7 +20,7 @@ class GNode:
     def __init__(self, VertexNum):
        self.Nv = VertexNum
        self.Ne = 0
-       self.G = [[INFINITY]*MaxVertexNum]*MaxVertexNum # 邻接矩阵， 有权重的情况下，初始化为无限大
+       self.G = [[INFINITY]*MaxVertexNum for i in range(MaxVertexNum)] # 邻接矩阵， 有权重的情况下，初始化为无限大
                                                         # 不存在自回路，所以对角元存储的应该是无穷大
        self.Data = [None]*MaxVertexNum # 存储顶点的数据，很多情况下顶点是没有数据的，因此不用此属性
     def insertEdge(self, e):

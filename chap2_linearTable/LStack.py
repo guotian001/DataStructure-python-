@@ -15,10 +15,22 @@ class LStack:
         self.S.next_ = temp
 
     def pop(self):
-        if is_empty(self):
+        if self.is_empty():
             print '栈空'
             return None
         else:
             top = self.S.next_
             self.S.next_ = top.next_
             return top.elem
+
+if __name__ == '__main__':
+    stack = LStack()
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+    stack.push(4)
+    print stack.pop()
+    print stack.pop()
+    print stack.pop()
+    print stack.pop()
+    print stack.pop()

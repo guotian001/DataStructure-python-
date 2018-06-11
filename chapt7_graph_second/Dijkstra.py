@@ -33,9 +33,9 @@ def getMinDistNotCollected(collected, dist, n):
             minDist = dist[i]
             minV = i
     if minV>-1:
-        return minDist, minV
+        return minV
     else:
-        return None, None
+        return  None
 
 def dijkstra(g, dist, path, s):
     # 初始化
@@ -66,7 +66,7 @@ def dijkstra(g, dist, path, s):
 
     return True
 
-
+from chap2_linearTable.LStack import LStack
 def printPath(path, v):
     # 堆栈操作
     stack = LStack()
