@@ -1,6 +1,6 @@
 #encoding:utf-8
 class SNode:
-    def __init__(self, elem, next_ = None):
+    def __init__(self, elem=None, next_ = None):
         self.elem = elem
         self.next_ = next_
 
@@ -11,7 +11,7 @@ class LStack:
     def is_empty(self):
         return self.S.next_ == None
     def push(self, X):
-        temp = SNode(self,X,self.S.next_)
+        temp = SNode(X,self.S.next_)
         self.S.next_ = temp
 
     def pop(self):

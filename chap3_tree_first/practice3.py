@@ -98,4 +98,58 @@ def main():
     tree = buildTree()
     postOrderTraval(tree)
 
-main()
+# main()
+
+
+########## 老师的思路 ###########
+'''
+    这个堆栈操作其实是非递归中序遍历
+    这个非递归中序遍历的入栈序列为先序遍历，出栈队列为中序遍历
+    由先序遍历和中序遍历可以直接写出后序遍历，不需要建表
+    递归解决
+'''
+def sovleWithNoBuildTree():
+    N = input()
+    pre = []
+    in_ = []
+    s = Stack(N)
+    for i in range(N*2):
+        desc = raw_input()
+        if 'Push' in desc:
+            pre.append(desc[-1])
+            s.push(desc[-1])
+        else:
+            x = s.pop()
+            in_.append(x)
+    post = [None]*N
+    solve(0,0,0,N, pre, in_, post)
+    for i in post:
+        print i,
+
+
+def solve(preL, inL, postL, n, pre, in_, post):
+    # 递归出口
+    if n==0:
+        return
+    if n==1:
+        post[postL] = pre[preL]
+
+    post[postL+n-1] = pre[preL]
+    index = 0
+    for i in range(n):
+        if in_[inL+i] == pre[preL]:
+            index = i
+            break
+
+    # 开始递归解决问题
+    # 对原问题的子树而言，又是一个规模缩小了的同样的问题
+    L = index
+    R = n-index-1
+
+    # 左边
+    solve(preL+1, inL, postL, L, pre, in_, post)
+    # 右边
+    solve(preL+L+1, inL+L+1, postL+L, R, pre, in_, post)
+
+sovleWithNoBuildTree()
+

@@ -114,7 +114,7 @@ def wpl(tree, length=0):
     else:
         if tree.left==None and tree.right==None:
             return tree.data*length
-        else:
+        else: # 非叶子节点一定有左右结点
             return wpl(tree.left,length+1)+wpl(tree.right,length+1)
 
 
