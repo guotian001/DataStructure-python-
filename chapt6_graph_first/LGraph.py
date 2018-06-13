@@ -20,21 +20,17 @@ class AdjVNode:
         self.next_ = next_
 # 顶点表头结点的定义
 class Vnode:
-    def __init__(self, firstEdge=0, data=None):
+    def __init__(self, firstEdge=None, data=None):
         self.firstEdge = firstEdge # 边表头结点
         self.data = data # 顶点的数据 # 多数情况下顶点是不存数据的
 
 class GNode:
+    # 初始化一个由VertexNum 个顶点但是没有边的图
     def __init__(self, Nv=0, Ne=0):
         self.Nv = Nv # 顶点数
         self.Ne = Ne # 边数
-        self.G = [None]*Nv # 邻接表
+        self.G = [Vnode() for i in range(Nv)] # 邻接表
 
-    # 初始化一个由VertexNum 个顶点但是没有边的图
-    def createGraph(self, VertexNum):
-        self.Nv=VertexNum
-        for i in range(VertexNum):
-            self.G[i].firstEdge = None
 
     def insertEdge(self, e):
         newNode = AdjVNode()
@@ -53,7 +49,7 @@ class GNode:
 
     def buildGraph(self):
         Nv = input()
-        self.createGraph(Nv)
+        self.__init__(Nv)
         Ne = input()
         self.Ne = Ne
         while Ne:

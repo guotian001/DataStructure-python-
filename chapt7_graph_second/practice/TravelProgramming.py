@@ -72,7 +72,7 @@ def dijkstra(s,N, G):
                     dist[i] = dist[v]+g.G[v][i]
                     cost[i] = cost[v]+g.cost[v][i]
                     path[i] = v
-                if dist[v]+g.G[v][i]==dist[i] and cost[v]+g.cost[v][i]<cost[i]: # 等于也可能更新
+                elif dist[v]+g.G[v][i]==dist[i] and cost[v]+g.cost[v][i]<cost[i]: # 等于也可能更新
                    # 如果可以减少过路费的话
                     cost[i] = cost[v] + g.cost[v][i]
                     path[i] = v

@@ -128,7 +128,8 @@ class Heap:
         self.__init__(2*len(list))
         self.elements[1:] = list
         self.size = len(list)
-        # 从最后一个有子结点的结点开始调整，只有一个结点的看做堆
+        # 调整方法：如果结点的左右子树都是堆，那么调整结点使该树成为堆即可，叶子结点可以看做堆
+        # 从最后一个有子结点的结点开始调整，叶子结点看做堆
         for i in range(self.size/2,0,-1):
             self.percDown(i)
 
