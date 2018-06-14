@@ -33,7 +33,7 @@ def initialESet(G, Nv):
     eCount = 0
     for i in range(Nv):
         v = G.G[i].firstEdge
-        while not v:
+        while v:
             # 避免重复收录无向图的边, 只收录v1<v2的边
             if i < v.adjV:
                 e = Edge(i, v.adjV, v.weight)
@@ -51,7 +51,7 @@ def percDown(eSet, i, N):
         if child<N and eSet[child+1].weight<eSet[child].weight:
             child = child+1
         # child是小子节点
-        if temp<eSet[child].weight:
+        if temp>eSet[child].weight:
             # 结点上浮
             eSet[parent] = eSet[child]
             # 开始递归
@@ -69,7 +69,7 @@ def buildMinHeap(G, Nv):
     return eSet
 # 删除根节点
 def deleteMin(eSet):
-    N = len(eSet)
+    N = len(eSet)-1
     if N<=1:
         return None
     minE = eSet[1]
@@ -85,21 +85,20 @@ def find(S, v):
         S[v] = find(S, S[v])
         return S[v]
 
-def isLoop(vSet, e):
+def isLoopAndUnion(S, e):
     #检测e的两个端点是否是同一个集合
-    root1 = find(vSet, e.V1)
-    root2 = find(vSet, e.V2)
-    return True if root1==root2 else False
-
-def union(S, v1, v2):
+    root1 = find(S, e.v1)
+    root2 = find(S, e.v2)
+    if root1==root2:
+        return True
     # 小集合并入大集合
     if S[root1]<S[root2]:
-        S[root2] = root1
         S[root1]+=S[root2]
+        S[root2] = root1
     else:
-        S[root1] = root2
         S[root2]+=S[root1]
-    return True
+        S[root1] = root2
+    return False
 
 
 
@@ -115,16 +114,14 @@ def Krustkal(G):
         e = deleteMin(eSet) # 还有一种方法，依次将最值从数组右端开始存储，不过需要从0开始存储
         if not e:
             break
-        if not isLoop(vSet, e):
-            # 合并
-            union(vSet, e.V1, e.V2)
+        if not isLoopAndUnion(vSet, e):
             tree.insertEdge(e)
             totalWeight+=e.weight
             Ecount+=1
     if Ecount<Nv-1:
-        return False
+        return None, None
     else:
-        return tree
+        return tree,totalWeight
 
 
 

@@ -34,7 +34,7 @@ class SQueue:
     def is_empty(self):
         return self._rear == self._front
     def addQ(self, X):
-        if self.is_full(self):
+        if self.is_full():
             print '队列满'
             return False
         else:
@@ -43,9 +43,21 @@ class SQueue:
             return True
 
     def deleteQ(self):
-        if self.is_empty(self):
+        if self.is_empty():
             print '队列空'
             return None
         else:
             self._front = (self._front+1)%self._maxSize
             return self._data[self._front] # front指向第一个元素前面的元素
+
+
+if __name__ == '__main__':
+    queue = SQueue()
+    queue.addQ(1)
+    queue.addQ(2)
+    queue.addQ(3)
+    queue.addQ(4)
+    print queue.deleteQ()
+    print queue.deleteQ()
+    print queue.deleteQ()
+    print queue.deleteQ()

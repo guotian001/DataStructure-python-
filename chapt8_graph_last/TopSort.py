@@ -10,7 +10,7 @@ def initialInDegree(G):
     inDegree = [0]*G.Nv
     for i in range(G.Nv):
         next_ = G.G[i].firstEdge
-        while not next_:
+        while next_:
             inDegree[next_.adjV]+=1
             next_ = next_.next_
     return inDegree
@@ -31,7 +31,7 @@ def TopSort(G):
         count+=1
         # 对v的邻接点进行减度
         next_ = G.G[v].firstEdge
-        while not next_:
+        while next_:
             inDegree[next_.adjV] -= 1
             if inDegree[next_.adjV] == 0:
                 queue.addQ(next_.adjV)

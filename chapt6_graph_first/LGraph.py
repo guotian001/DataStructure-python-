@@ -31,6 +31,13 @@ class GNode:
         self.Ne = Ne # 边数
         self.G = [Vnode() for i in range(Nv)] # 邻接表
 
+    def insertEdgeDirect(self, e):
+        newNode = AdjVNode()
+        newNode.adjV = e.v2
+        newNode.weight = e.weight
+        # 将新建的邻接点插入邻接点表的头部
+        newNode.next_ = self.G[e.v1].firstEdge
+        self.G[e.v1].firstEdge = newNode
 
     def insertEdge(self, e):
         newNode = AdjVNode()
