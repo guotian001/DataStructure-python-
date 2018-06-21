@@ -9,12 +9,11 @@ def insertionSort(list, N):
         # 将一个元素插入到前面的有序序列中去
         temp = list[i]
         # 找到位置
-        j = i-1
-        while j>=0 and list[j]>temp:
-            list[j+1] = list[j]
+        j = i
+        while list[j-1]>temp and j>0:
+            list[j] = list[j-1]
             j-=1
-        list[j+1] = temp
-
+        list[j] = temp
 
 if __name__ == '__main__':
     list = [1,2,4,3,2,111,4,58,5,3]
