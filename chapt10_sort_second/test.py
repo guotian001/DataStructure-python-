@@ -16,6 +16,9 @@ def insertionSort(list, N):
         list[j] = temp
 
 if __name__ == '__main__':
-    list = [1,2,4,3,2,111,4,58,5,3]
-    insertionSort(list, len(list))
-    print list
+    # list = [1,2,4,3,2,111,4,58,5,3]
+    # insertionSort(list, len(list))
+    # print list
+    # list = [[i, '-'] for i in range(10)]
+    # print list
+    print 2%8
