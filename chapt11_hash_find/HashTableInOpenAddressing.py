@@ -1,7 +1,7 @@
 #encoding:utf-8
 '''
 开放定址法
-平法探测
+平方探测
 '''
 MAX_TABLE_SIZE = 100000 # 允许开辟的最大散列表长度
 Legitimate = 1
@@ -12,7 +12,7 @@ Deleted = 3
 class Cell:
     def __init__(self):
         self.data = None
-        self.info = Empty# 状态标识
+        self.info = Empty # 状态标识
 
 
 # 散列表结点的定义
@@ -32,7 +32,7 @@ def nextPrime(N):
             if not p%i: # 不是素数
                 break
         # for正常结束的话，说明是素数
-        if i==2:
+        if i==2: # 从平方根直到2
             break
         else:
             p+=2
@@ -52,7 +52,7 @@ def myHash(key, size):
 # 在表中查找
 # 找到的结果还需自己判断
 def find(hashTable, key):
-    pos =CalPos =  myHash(key, hashTable.tableSize)
+    pos =CalPos =  myHash(key, hashTable.tableSize) # di是在计算出的位置上进行增减操作的
     Cnum = 0 # 冲突次数
     while hashTable.cells[pos].info!=Empty and hashTable.cells[pos].data!=key:
         # 开始探测
