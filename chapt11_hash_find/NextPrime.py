@@ -1,6 +1,6 @@
 #encoding:utf-8
 
-MAX_TABLE_SIZE = 100000 # 允许开辟的最大散列表长度
+MAX_TABLE_SIZE = 1000000 # 允许开辟的最大散列表长度
 from math import sqrt
 def nextPrime(n):
     n = n if n%2 else n+1
