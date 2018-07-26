@@ -1,7 +1,7 @@
 #encoding:utf-8
 '''
 判断是归并排序还是插入排序？
-思路，从后面往前遍历直至不一致，再遍历前一个元素是否是正确的位置，是 插入排序，否归并排序
+思路，从后面往前遍历直至不一致，再判断之前的元素是否有序，是 插入排序，否归并排序
 '''
 def InsertionOrMerge(list, temp, N):
     i = N-1
@@ -36,6 +36,7 @@ Merge Sort
 '''
 def insertionNext(list, N):
     # 找到合适的位置
+    # 可以改进下，在进行判断的时候就返回出来
     for i in range(N-1):
         if list[i]>list[i+1]:
             break
@@ -43,7 +44,7 @@ def insertionNext(list, N):
     if i < N-1: # 尚未排序完成
         temp = list[i+1]
         j = i+1
-        # python中没有那种两个分号的while循环，用while来代替
+        # python中没有那种两个分号的for循环，用while来代替
         while j>=1 and temp<list[j-1]:
             list[j] = list[j - 1]
             j-=1
@@ -69,6 +70,16 @@ def getLength(list, start, end):
         l+=1
     return l
 
+'''
+这种思路有问题，因为有可能归并后最后面就剩一个单个的了。。。
+
+4 2 1 3 13 14 12 11 8 9 7 6 10 5
+1 2 3 4 11 12 13 14 6 7 8 9 5 10
+
+？？？ 那么该怎么办呢？
+最靠谱的方法：从头开始归并，但是这样子太笨了，
+那么受此启发，可以从头开始判断啊，判断总是比较省时间的啦，从2-4-8开始判断，而判断的时候又只用考虑相邻归并端的尾首即可
+'''
 def findlength(list, N):
     length = getLengthFirst(list, N)
     start = 0 + length
@@ -92,7 +103,7 @@ def mergeNext(list, N):
 
 
 # 插入排序，找到位置，再进行一次
-# 归并排序，关键是找出length：从左到右进行遍历，先找出一个数字，然后进行检验修正，这样可以保证O(N)找到
+# 归并排序，关键是找出length：从左到右进行遍历，先找出一个数字，然后进行检验修正，这样可以保证O(N)找到：这种思路有点小问题
 from utils.readList import readList
 if __name__ == '__main__':
     N = input()
