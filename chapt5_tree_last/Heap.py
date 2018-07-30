@@ -136,20 +136,22 @@ class Heap:
 
 
 ##########################   test ###########
-h = Heap(20)
-list = [79,66,43,83,30,87,38,55,91,72,49,9]
-h.buildHeap(list)
-print h.elements[1:]
+if __name__ == '__main__':
 
-h2 = Heap(10)
-h2.insert(18)
-h2.insert(10)
-h2.insert(25)
-h2.insert(31)
-h2.insert(44)
-print h2.elements[1:h2.size+1]
-h2.deleteMax()
-print h2.elements[1:h2.size+1]
+    h = Heap(20)
+    list = [79,66,43,83,30,87,38,55,91,72,49,9]
+    h.buildHeap(list)
+    print h.elements[1:]
+
+    h2 = Heap(10)
+    h2.insert(18)
+    h2.insert(10)
+    h2.insert(25)
+    h2.insert(31)
+    h2.insert(44)
+    print h2.elements[1:h2.size+1]
+    h2.deleteMax()
+    print h2.elements[1:h2.size+1]
 
 
 
