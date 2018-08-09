@@ -126,7 +126,7 @@ def reverseWithK(head, K):
         rest = p._next # 将剩下的链看做一个新的
         p._next = None # 将前k个作为一条单独的链反转
         new = reverse(head)
-        new_rest = reverseWithK(rest, K) # 将剩下的链递归反转
+        new_rest = reverseWithK(rest, K) # 显然剩下的是个规模缩小了的同类问题，因此毫无疑问递归之
         head._next = new_rest # 将反转后的两条链连在一起，head为前k个链的反转后的尾
         return new
 

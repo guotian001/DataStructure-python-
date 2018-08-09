@@ -7,16 +7,16 @@
 from Merge import merge1
 
 # 核心代码，找个具体的例子走一遍
-def merge_pass(list, temp, N, length):
+def merge_pass(list, temp, N, length):  # length指的是已经有序的序列的长度
     # for循环，准确地用while循环改写
     i=0
     while i < N-2*length: # 这里等于或者小于都是可以的，不过按老师所说的思路，应该小于，否则如果刚好剩下的是2*length个，下面的merger会在这里做掉，不过不影响结果
         merge1(list, i, i+length, i+2*length-1, temp)
         i+=2*length # merge的是两个序列，所以乘以2
 
-    if i+length<N: # i+length要么等于N（剩一个）, 要么等于N-length(剩两个)
+    if i+length<N: # 说明剩余的多于一个有序的序列，需要归并
         merge1(list, i, i+length, N-1, temp)
-    else:
+    else: # 剩余的最多是一个序列的长度
         for j in range(i, N):
             temp[j] = list[j]
 

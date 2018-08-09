@@ -21,6 +21,7 @@ class Node:
 
 # 堆中存放Node结点，这样delete出来的就是一个结点,保证树结构
 # 顺便实现下最小堆
+# 堆中存放的不在直接是数据，而是对象，进行比较的key是对象的一个属性
 minData = float('-inf')
 class MinHeap:
     def __init__(self, maxSize):
@@ -104,6 +105,7 @@ def huffman(heap): # 此处的heap是最小堆
     # 最后堆中剩下的元素就是Huffman树
     return heap.delete()
 
+# 递归：解方程的思想总能使问题简便化
 # 递归求wpl
 # 递归 闪烁着智慧的光芒
 # 根节点的长度=0

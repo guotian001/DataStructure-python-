@@ -1,6 +1,8 @@
 # encoding:utf-8
 '''
     平衡二叉树，每个结点的平衡因子绝对值不超过1
+
+    树高在插入的时候确定
 '''
 
 class AVLNode:
@@ -56,14 +58,14 @@ def doubleRightLeftRotation(A):
 # 平衡二叉树的插入， 需要考虑到插入后的高度问题，找到对应的情景，进行相应的旋转
 # 递归插入，跟二叉搜索树的不同之处： 加入平衡因子的计算检验，并考虑旋转问题
 def insert(tree, X):
-    if not tree: # 空树
+    if not tree: # 空树  空作为特殊情况
         return AVLNode(X) # 递归出口
     elif X > tree.data:
         # 可能会有旋转，因此需要重新赋值
         tree.right =  insert(tree.right, X) # 改变不了方法外的实参，但是可以改变变量指向的对象的属性值，编程中经常遇到，即height还是可以改变的
         # 校验平衡因子，是否需要旋转
         if getHeight(tree.left)-getHeight(tree.right) == -2:
-            # 需要旋转,且tree一定有右子节点
+            # 需要旋转,且tree在插入前一定有右子节点
             if X > tree.right.data:
                 # RR旋转
                 return singleRightRotation(tree)
@@ -81,6 +83,7 @@ def insert(tree, X):
     # else: 等于tree.data时 不做插入
 
     # 不要忘了更新树高，，，??? 真的需要更新树高么？  在旋转方法中已经更新过了哎
+
     # 如果有旋转的话当然就不要更新树高了，但是不要忘了，也可能插入之后不用旋转啊，这时就要更新树高了
     # PS： 代码走到这里说明tree没有旋转
     tree.height = max(getHeight(tree.left), getHeight(tree.right)) + 1

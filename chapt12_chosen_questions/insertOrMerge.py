@@ -53,6 +53,7 @@ def insertionNext(list, i, N): # i 是待插入元素的位置
 
 
 
+# 这个还是比较有思想的
 def getLength(list, N):
     l = 2
     flag = True
@@ -61,7 +62,7 @@ def getLength(list, N):
         end = 0+l-1
         while end<N-1:
             if list[end]<=list[end+1]:
-                end+=l*2
+                end+=l*2 # 判断下个长度的序列内部是否有序
             else:
                 flag = False
                 break

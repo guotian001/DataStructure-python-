@@ -28,9 +28,9 @@ def HeapSort(list, N): # N是元素的个数
     # buildHeap
     for i in range(N/2-1, -1, -1):
         percDown(list, i, N)# 向下过滤
-    # 交换
+    # 交换（改进的deleteMax）
     for i in range(N-1, 0, -1):
-        swap(list, 0, i)
+        swap(list, 0, i)# 改进之处，将delete掉的元素依次放在数组的尾部即可
         percDown(list, 0, i)
 
 #################

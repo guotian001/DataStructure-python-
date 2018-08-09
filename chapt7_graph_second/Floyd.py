@@ -17,7 +17,7 @@ def Floyd(g):
     for k in range(g.Nv):
         for i in range(g.Nv):
             for j in range(g.Nv):
-                if G[i][k]+G[k][i]<G[i][j]: # 需要找个实例来看看，到底找个算法到底做了什么东西
+                if G[i][k]+G[k][i]<G[i][j]: # 需要找个实例来看看，到底这个算法到底做了什么东西
                     G[i][j] = G[i][k]+G[k][i]
                     if i==j and G[i][j] < 0:# 如果==0呢，转再多圈也是0，所以一圈得到的就是最短路径，
                                             # 但是如果<0，转的圈数越多越小，但是该算法只会执行一圈，所以得到的就是错误的答案，算法失效

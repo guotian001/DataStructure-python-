@@ -39,7 +39,7 @@ def quickSort(list, left, right):
         i = left+1
         j = right-2
         while True:
-            while list[i]<pivot:
+            while list[i]<pivot: # 程序是有执行顺序的，先走i再走j
                 i+=1
             while list[j]>pivot:
                 j-=1

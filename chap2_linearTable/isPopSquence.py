@@ -72,6 +72,9 @@ def isPopSquence(inSeq, outSeq, M):
 
 '''
     下标比较法
+    
+    out中某元素，其后小于它的都是比其先入的，故，在该元素出的时候，他们都是在堆栈中，故输出的时候应该是降序排列的
+    
     思路： 对out 中的每个元素，其后比其小的元素都是降序排列的
     复杂度应该也是O(n)的，最坏情况所有元素遍历一遍
 '''
@@ -84,6 +87,8 @@ def isPopSquence_compare(inSeq, outSeq):
         a = temp = outSeq[0] # 头
         for j in range(i+1, len(outSeq)):
             if a > outSeq[j]: # 比较过一次的,如果没有false，应该移除掉，再下一个的后面肯定不会有问题
+                                    # 因为，这就是一个降序的序列，对序列中的每个元素，比它小的都在序列中，并且已经是降序的，不会出现false的情况，所以不需要再进行判断了
+                                    # 其实只要按比较笨的方法走两遍就可以发现了，之后的判断都是重复的，已经确定的可以直接处理掉，这个是该策略细节上的一点改进处理
                 if temp > outSeq[j]:
                     temp = outSeq[j]
                     outSeq.remove(temp)

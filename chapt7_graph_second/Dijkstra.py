@@ -15,7 +15,7 @@ def dijkstra(collected, path, dist):
         for w in getAdjV(v):
             if not collected[w] and dist[v]+getWeight(v, w)<dist[w]:
                 # 更新
-                dist[w] = dist[v]+getWeight(v, w)
+                dist[w] = dist[v]+getWeight(v, w) # 如果是堆的话还需要调整，因此这一步操作也可能是耗时的操作
                 path[w] = v
 
 
