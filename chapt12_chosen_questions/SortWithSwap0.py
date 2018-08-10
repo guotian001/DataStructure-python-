@@ -11,7 +11,7 @@
 思路： 分别找出这样的环
 
 '''
-
+# 是否还有环，有的话，给出一个环的头
 def isStillLoop(table, N):
     for i in range(N):
         if table[i]!=i:
@@ -22,9 +22,9 @@ def isStillLoop(table, N):
 def doAndCount(table, list, i, N): # i==0时，含0，其他都不含0
     idx = i
     count = 1
-    while table[table[idx]]!=table[idx]:
+    while table[table[idx]]!=table[idx]: # 要看当前指向的下一个指向是否是已经弄好的，是就是环结束了
         count+=1
-
+        # idx指向下一个，并且把当前的T[]改成正确的
         temp = table[idx]
         table[idx]=idx
         idx = temp
